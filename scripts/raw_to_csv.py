@@ -23,11 +23,11 @@ def raw_text_to_csv(corpora_folder: str,
         for en_sentence, fr_sentence in zip(open(corpus_english), open(corpus_french)):
             en_sentence: str = en_sentence.strip()
             fr_sentence: str = fr_sentence.strip()
-            en_fr_translations.append((en_sentence, fr_sentence, ""))
+            en_fr_translations.append((en_sentence, fr_sentence))
     
     for idx, i in enumerate(range(0, len(en_fr_translations), 100_000)):
         pd.DataFrame(en_fr_translations[i:i + 100_000],
-                    columns=["English", "French", "Fulfulde"]).to_csv(
+                    columns=["English", "French"]).to_csv(
                     out_folder / f"corpus_{idx + 1}.csv",
                     index=False)
 
